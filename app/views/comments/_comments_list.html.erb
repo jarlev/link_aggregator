@@ -4,16 +4,26 @@
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="panel panel-heading">
-						<button type="button" class="btn btn-default btn-lg">
-		  					<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-						</button><br>
-						<ul>
-							<li style="font-size: 20px; margin-left: 3.4px"><span><%= link_to "#{@posts.title}", post_path %></span></li>
-						</ul>
-						<button type="button" class="btn btn-default btn-lg">
-		  					<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-						</button>
-					</div>
+							<%= link_to increment_upvote_topic_path(@posts.topic, post: @posts.id), remote: true do %>
+								<button type="button" class="btn btn-default btn-lg">
+									<div class="upvote-submit-<%= @posts.id %>">
+				  						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+				  					</div>
+								</button><br>
+							<% end %>
+							<br>
+								<ul class="list-unstyled">
+									<li style="font-size: 20px; margin-left: 35px"><span><%= link_to "#{@posts.title}", post_path %></span></li>
+									<li class="change_score_<%= @posts.id %>" style="margin-left: 17.5px"><%= render partial: '/topics/change_score', locals: {post: @posts} %></li>
+								</ul>
+							<%= link_to increment_downvote_topic_path(@posts.topic, post: @posts.id), remote: true do %>
+								<button type="button" class="btn btn-default btn-lg">
+									<div class="downvote-submit-<%= @posts.id %>">
+				  						<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				  					</div>
+								</button>
+							<% end %>
+						</div>
 				</div>
 			</div>
 		</div>
