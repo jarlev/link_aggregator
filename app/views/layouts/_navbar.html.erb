@@ -1,0 +1,72 @@
+  <nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><strong>Bread-It</strong></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+                 <% if Topic.first.present? && current_page?(topic_path(Topic.first)) %>
+                <li><strong><%= link_to Topic.first.name, topic_path(Topic.first) %></strong> - </li>
+              <% elsif Topic.first.present? %>
+                <li><%= link_to Topic.first.name, topic_path(Topic.first) %></li>
+              <% else %>
+                <li><%= link_to "Create some topics! - ", new_topic_path %></li>
+              <% end %>
+                   <% if Topic.second.present? && current_page?(topic_path(Topic.second))%>
+                <li><strong><%= link_to Topic.second.name, topic_path(Topic.second) %></strong> - </li>
+              <% elsif Topic.second.present? %>
+                <li><%= link_to Topic.second.name, topic_path(Topic.second) %></li>
+              <% else %>
+                <li><%= link_to "Create some more topics! - ", new_topic_path %></li>
+              <% end %>
+              <% if Topic.third.present? && current_page?(topic_path(Topic.third)) %>
+                <li><strong><%= link_to Topic.third.name, topic_path(Topic.third) %></strong> - </li>
+              <% elsif Topic.third.present? %>
+                <li><%= link_to Topic.third.name, topic_path(Topic.third) %></li>
+              <% else %>
+                <li><%= link_to "Create some more topics! - ", new_topic_path %></li>
+              <% end %>
+              <% if Topic.fourth.present? && current_page?(topic_path(Topic.fourth)) %>
+                <li><strong><%= link_to Topic.fourth.name, topic_path(Topic.fourth) %></strong> - </li>
+              <% elsif Topic.fourth.present? %>
+                <li><%= link_to Topic.fourth.name, topic_path(Topic.fourth) %></li>
+              <% elsif Topic.first.present? && Topic.second.present? && Topic.third.present? %>
+                <li><%= link_to "Create some more topics! - ", new_topic_path %></li>
+              <% else %>
+                <li><%= link_to " ", new_topic_path %></li>
+              <% end %>
+              <% if Topic.fifth.present? && current_page?(topic_path(Topic.fifth)) %>
+                <li><strong><%= link_to Topic.fifth.name, topic_path(Topic.fifth) %></strong> - </li>
+              <% elsif Topic.fifth.present? %>
+                <li><%= link_to Topic.fifth.name, topic_path(Topic.fifth) %></li>
+              <% elsif Topic.first.present? && Topic.second.present? && Topic.third.present? && Topic.fourth.present? %>
+                <li><%= link_to "Create some more topics! - ", new_topic_path %></li>
+              <% else %>
+                <li><%= link_to " ", new_topic_path %></li>
+              <% end %>
+              <% if current_page?(topics_path) %>
+                <li><strong><%= link_to "topics index", topics_path %></strong></li>
+              <% else %>
+                <li><%= link_to "topics index", topics_path %></li>
+              <% end %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+             <% if current_user.present? %>
+                  <li id="sign_out"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "pull-right" %></li>
+                <% else %>
+                  <li><%= link_to "Sign in", new_user_session_path %></li>
+                  <li><%= link_to "Sign up", new_user_registration_path %></li>
+                <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,3 @@
+  $('.upvote-submit-<%= @post.id %>').css('color', 'black');
+  $('.downvote-submit-<%= @post.id %>').css('color', 'purple');
+  $(".change_score_<%= @post.id %>").replaceWith("<%= j(render partial: 'change_score', locals: {post: @post})%>")

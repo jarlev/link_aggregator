@@ -1,0 +1,16 @@
+<h3>submit to <%= link_to "#{@topic.name}", '#' %></h3><br>
+<h5>You are submitting a post. The key to a successful submission is interesting content and a descriptive title.</h5><br>
+<%= form_for Post.new, url: create_post_topic_path, html: {class: "form-inline"}, class: "form-inline" do |f| %>
+	<div class="form-group">
+		<%= f.label :title %><br>
+		<%= f.text_field :title, class: "form-control" %>
+	</div><br><br>
+	<div class="form-group">
+		<%= f.label :description %><br>
+		<%= f.text_field :description, class: "form-control" %>
+	</div><br><br>
+	<h5>please be mindful of Bread-It's content policy and practice good etiquette.</h5><br>
+	<div class="form-group">
+    		<%= f.submit "Submit", class: "btn btn-default btn-sm" %>
+  	</div>
+<% end %>

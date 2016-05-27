@@ -1,0 +1,28 @@
+
+body {
+	background-color: #e6f2ff;
+	padding-top: 80px;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+}
+
+.navbar {
+	background-color: #ccddff;
+	border: 1px solid black;
+	display: inline-block;
+	width: 100%;
+	position: absolute;
+	white-space: nowrap;
+}
+
+.navbar li {
+	margin-right: -5px;
+	font-size: 12px;
+}
+
+#sign_out {
+	margin-right: 7px;
+}
+
+#search_bar {
+	margin-left: 100px;
+}

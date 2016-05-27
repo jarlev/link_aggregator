@@ -1,0 +1,18 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+ul.menu li {
+    display: inline;
+    font-size: 10px;
+}
+
+div#indent {
+	padding-left: 50px;
+}
+
+ li span { 
+ 	position: relative;
+  	left: 30px; 
+  }

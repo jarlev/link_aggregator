@@ -1,0 +1,63 @@
+<div class="container">
+	<div class="row row-offcanvas row-offcanvas-right">
+		<div class="col-xs-12 col-sm-9">
+			<div class="row">
+            		<div class="col-sm-8">
+					<h3>submit to <%= link_to "#{@posts.topic.name}", '#' %></h3><br>
+					<h5>You are replying to the following post. Please be sure to proof-read your comment before submitting.</h5><br>
+					<div class="panel panel-default">
+						<div class="container-fluid">
+							<div class="panel panel-heading">
+								<h4 style="font-size: 25px"><%= link_to "#{@posts.title}", post_path %></h4>
+							</div>
+							<div class="panel panel-body panel-info">
+								<div class="container-fluid">
+									<%= @posts.description %>
+								</div>
+							</div>
+							<div class="pull-left">
+								<ul class="menu">
+									<li><%= link_to "#{@posts.comments.count} comments", post_path(@posts) %></li>
+								</ul>
+							</div>
+							<div class="pull-right">
+								<ul class="menu">
+									<li>posted by <%= @posts.user.username %></li>	
+									<li>on <em><%= @posts.created_at %></em></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<%= form_for Comment.new, url: create_comment_post_path, html: {class: "form-inline"}, class: "form-inline" do |f| %>
+						<div class="form-group">
+							<%= f.label :description %><br>
+							<%= f.text_field :description, class: "form-control" %>
+						</div><br><br>
+						<h5>please be mindful of our content policy and practice good etiquette.</h5><br>
+						<div class="form-group">
+					    		<%= f.submit "Submit", class: "btn btn-default btn-sm" %>
+					  	</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+			<div class="container-fluid">
+				<div class="input-group">
+	      			<input type="text" class="form-control" placeholder="search">
+	      			<span class="input-group-btn">
+	        				<button class="btn btn-default" type="button">Go!</button>
+	      			</span>
+	    			</div>
+				<h1><strong><u><%= @topic.name %></strong></u></h1>
+				<h3 id="description"><small><em><%= @topic.description %></small></em></h3><br>
+				<h4><small>
+					<div class="btn-group-vertical" role="group">
+						<%= link_to "Submit a new post", submit_topic_path(@posts.topic), method: :post, class: "btn btn-primary" %>
+					</div><br>
+					Important Links
+				</small></h4>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,53 @@
+<% @posts.each do |post| %>
+	<div class="panel panel-default">
+		<div class="container-fluid">
+			<div class="container-fluid">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="panel panel-heading">
+							<%= link_to increment_upvote_topic_path(post.topic, post: post.id), remote: true do %>
+								<button type="button" class="btn btn-default btn-lg">
+									<div class="upvote-submit-<%= post.id %>">
+				  						<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+				  					</div>
+								</button><br>
+							<% end %>
+							<br>
+								<ul class="list-unstyled">
+									<li style="font-size: 20px; margin-left: 35px"><span><%= link_to "#{post.title}", post_path(post) %></span></li>
+									<li class="change_score_<%= post.id %>" style="margin-left: 17.5px"><%= render partial: '/topics/change_score', locals: {post: post} %></li>
+								</ul>
+							<%= link_to increment_downvote_topic_path(post.topic, post: post.id), remote: true do %>
+								<button type="button" class="btn btn-default btn-lg">
+									<div class="downvote-submit-<%= post.id %>">
+				  						<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+				  					</div>
+								</button>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-body panel-info">
+				<div class="container-fluid">
+					<%= post.description %>
+				</div>
+			</div>
+				<div class="pull-left">
+					<ul class="menu">
+						<li><%= link_to "#{post.comments.count} comments", post_path(post) %></li>
+					</ul>
+				</div>
+				<div class="pull-right">
+					<ul class="menu">
+						<li>posted on <em><%= post.created_at %></em> | </li>
+						<li><%= link_to "reply to this post", submit_comment_post_path(post), method: :post %> | </li>
+						<li></li>
+						<li></li>
+						<li>posted by <%= post.user.username %></li>	
+						<li>to: <%= link_to post.topic.name, topic_path(post.topic) %></li>
+					</ul>
+				</div>
+		</div>
+	</div>
+<% end %>
